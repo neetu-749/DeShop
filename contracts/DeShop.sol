@@ -16,6 +16,9 @@ contract DeShop {
         uint256 stock;
     }
 
+    mapping(uint256 => Item) public items;
+
+
     constructor(){
         // name = "DeShop";
         owner = msg.sender;
@@ -43,6 +46,7 @@ contract DeShop {
             );
 
             // save item struct to blockchain
+            items[_id] = item;
     }
 
     // Buy products

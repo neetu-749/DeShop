@@ -29,5 +29,25 @@ describe("DeShop", () => {
     //   expect(name).to.equal("DeShop")
     // })
   })
+  describe("Listing", () =>{
+    let transaction
+    const ID =1
+    beforeEach(async() =>{
+      transaction = await deshop.connect(deployer).list(
+        ID,
+        "Shirt",
+        "Clothing",
+        "IMAGE",
+        1,
+        4,
+        5
+      )
+      await transaction.wait()
+    })
+    it('Returns item attributes', async () =>{
+      const item = await deshop.items(1)
+      expect(item.id).to.equal(ID)
+    })
+  })
 
 })
