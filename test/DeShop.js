@@ -5,5 +5,29 @@ const tokens = (n) => {
 }
 
 describe("DeShop", () => {
+  let deshop
+  let deployer, buyer
+
+  beforeEach(async () => {
+    //setup accounts
+    [deployer, buyer] = await ethers.getSigners()
+    console.log((deployer.address, buyer.address))
+
+    // deploy contract
+    const DeShop = await ethers.getContractFactory("DeShop")
+    deshop = await DeShop.deploy()
+  })
+  
+  // mocha testing framework
+  describe("Deployment", () => {
+    it('sets the owner', async () => {
+      expect(await deshop.owner()).to.equal(deployer.address)
+    })
+
+    // it('has a name', async () =>{
+    //   const name = await deshop.name()
+    //   expect(name).to.equal("DeShop")
+    // })
+  })
 
 })
